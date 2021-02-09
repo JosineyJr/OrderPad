@@ -34,13 +34,17 @@ public class Operator {
     @NotEmpty(message = "*Por favor digite um Nome de Usuário")
     private String userName;
 
+    @Column(name = "name")
+    @NotEmpty(message = "*Por favor digite seu nome")
+    private String name;
+
+    @Column(name = "active")
+    private Boolean active;
 
     @Column(name = "password")
     @Length(min = 5, message = "*Sua password deve ter mais de 5 characteres")
     @NotEmpty(message = "*Por favor digite sua password")
     private String password;
-
-
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "operator_role",

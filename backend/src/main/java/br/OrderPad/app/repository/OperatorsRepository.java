@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface OperatorsRepository extends JpaRepository<Operator, Long> {
     Operator findOperatorByOrderPads(OrderPad orderPad);
 
+    Operator findOperatorByUserName(String userName);
+
+    Operator findByActiveTrueAndUserName(String userName);
 }

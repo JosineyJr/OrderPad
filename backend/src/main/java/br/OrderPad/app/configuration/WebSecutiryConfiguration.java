@@ -1,26 +1,28 @@
 package br.OrderPad.app.configuration;
 
+import br.OrderPad.app.service.MyOperatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecutiryConfiguration {
+public class WebSecutiryConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private MyOperatorDetailsService operatorDetailsService;
+    private MyOperatorService operatorService;
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.operatorDetailsService(operatorDetailsService).passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(operatorService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
@@ -62,6 +64,4 @@ public class WebSecutiryConfiguration {
                 .ignoring()
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
     }
-}
-
 }
