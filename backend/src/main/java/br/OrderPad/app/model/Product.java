@@ -1,6 +1,5 @@
 package br.OrderPad.app.model;
 
-import br.OrderPad.app.enums.ProductStockStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,10 +23,4 @@ public class Product {
     @Column(name = "productName")
     @NotEmpty(message = "*Por favor digite um nome para o produto")
     private String name;
-
-    @Column(name = "productStock")
-    private Integer stock;
-
-    @Column(name = "productStockStatus")
-    private ProductStockStatus productStockStatus;
 }

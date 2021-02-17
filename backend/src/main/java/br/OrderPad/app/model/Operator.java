@@ -23,7 +23,7 @@ public class Operator {
     @Column(name = "operatorId")
     private Integer id;
 
-    @OneToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "operator_orderPad",
             joinColumns = @JoinColumn(name = "operatorId"),
             inverseJoinColumns = @JoinColumn(name = "orderPadId"))
@@ -45,6 +45,12 @@ public class Operator {
     @Length(min = 5, message = "*Sua password deve ter mais de 5 characteres")
     @NotEmpty(message = "*Por favor digite sua password")
     private String password;
+
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "operator_order",
+            joinColumns = @JoinColumn(name = "operatorId"),
+            inverseJoinColumns = @JoinColumn(name = "orderId"))
+    private List<Order> orders;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "operator_role",

@@ -20,6 +20,9 @@ public class Order {
     @Column(name = "orderId")
     private Integer id;
 
+    @Column(name = "quantity")
+    private Integer quantity;
+
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "order_product",
             joinColumns = @JoinColumn(name = "orderId"),
