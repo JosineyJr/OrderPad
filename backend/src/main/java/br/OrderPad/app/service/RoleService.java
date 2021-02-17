@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoleService {
@@ -20,8 +21,13 @@ public class RoleService {
         this.rolesRepository = rolesRepository;
     }
 
-    public List<Role> findAllList(){
+    public List<Role> findAllList() {
         return this.rolesRepository.findAll();
+    }
+
+    public Optional<Role> findOne(Integer roleId) {
+        log.debug("REST request to get role: {}", roleId);
+        return this.rolesRepository.findById(roleId);
     }
 
     public Role saveRole(Role role) {
